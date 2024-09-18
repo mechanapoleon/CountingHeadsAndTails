@@ -1,0 +1,234 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8251,        224]
+NotebookOptionsPosition[      7904,        210]
+NotebookOutlinePosition[      8297,        226]
+CellTagsIndexPosition[      8254,        223]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Genera", " ", "tutte", " ", "le", " ", "possibili", " ", "combinazioni"}],
+    "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{"tuples", "=", 
+     RowBox[{"Tuples", "[", 
+      RowBox[{"ConstantArray", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", "1"}], "}"}], ",", " ", "10"}], "]"}], "]"}]}], 
+    ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Funzione", " ", "per", " ", "determinare", " ", "il", " ", "vincitore"}],
+     "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"determinaVincitore", "[", "tuple_", "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"aliceHeadCount", "=", "0"}], ",", 
+         RowBox[{"bobHeadCount", "=", "0"}], ",", 
+         RowBox[{"aliceTailCount", " ", "=", " ", "0"}], ",", " ", 
+         RowBox[{"bobTailCount", " ", "=", " ", "0"}], ",", " ", "aliceOrder",
+          ",", "bobOrder"}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"aliceOrder", "=", 
+         RowBox[{"Range", "[", "10", "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"bobOrder", "=", 
+         RowBox[{"{", 
+          RowBox[{
+          "1", ",", "3", ",", "5", ",", "7", ",", "9", ",", "2", ",", "4", 
+           ",", " ", "6", ",", "8", ",", "10"}], "}"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"For", "[", 
+         RowBox[{
+          RowBox[{"i", "=", "1"}], ",", 
+          RowBox[{"i", "<=", "10"}], ",", 
+          RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"tuple", "[", 
+               RowBox[{"[", 
+                RowBox[{"aliceOrder", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], "]"}], "]"}], "==", "0"}], 
+             ",", 
+             RowBox[{"aliceHeadCount", "++"}], ",", " ", 
+             RowBox[{"aliceTailCount", "++"}]}], "]"}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"tuple", "[", 
+               RowBox[{"[", 
+                RowBox[{"bobOrder", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], "]"}], "]"}], "==", "0"}], 
+             ",", 
+             RowBox[{"bobHeadCount", "++"}], ",", " ", 
+             RowBox[{"bobTailCount", "++"}]}], "]"}], ";", 
+           "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"AnyTrue", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"aliceHeadCount", ",", " ", "aliceTailCount"}], 
+                 "}"}], ",", " ", 
+                RowBox[{
+                 RowBox[{"MatchQ", "[", 
+                  RowBox[{"#", ",", "2"}], "]"}], "&"}]}], "]"}], "&&", 
+              RowBox[{"AnyTrue", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"bobHeadCount", ",", " ", "bobTailCount"}], "}"}], 
+                ",", " ", 
+                RowBox[{
+                 RowBox[{"MatchQ", "[", 
+                  RowBox[{"#", ",", "2"}], "]"}], "&"}]}], "]"}]}], ",", 
+             RowBox[{"Return", "[", "\"\<T\>\"", "]"}]}], "]"}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"AnyTrue", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"aliceHeadCount", ",", " ", "aliceTailCount"}], "}"}],
+                ",", " ", 
+               RowBox[{
+                RowBox[{"MatchQ", "[", 
+                 RowBox[{"#", ",", "2"}], "]"}], "&"}]}], "]"}], ",", 
+             RowBox[{"Return", "[", "\"\<A\>\"", "]"}]}], "]"}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"AnyTrue", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"bobHeadCount", ",", " ", "bobTailCount"}], "}"}], 
+               ",", " ", 
+               RowBox[{
+                RowBox[{"MatchQ", "[", 
+                 RowBox[{"#", ",", "2"}], "]"}], "&"}]}], "]"}], ",", 
+             RowBox[{"Return", "[", "\"\<B\>\"", "]"}]}], "]"}], ";"}]}], 
+         "]"}], ";", "\[IndentingNewLine]", "\"\<T\>\""}]}], "  ", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{
+        "Se", " ", "nessuno", " ", "ha", " ", "vinto", " ", "dopo", " ", "5", 
+         " ", "turni"}], ",", 
+        RowBox[{"\[EGrave]", " ", "un", " ", "pareggio"}]}], "*)"}], 
+      "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Applica", " ", "la", " ", "funzione", " ", "a", " ", "tutte", " ", "le", 
+     " ", "tuple", " ", "e", " ", "aggiungi", " ", "il", " ", "risultato", 
+     " ", "come", " ", "sesta", " ", "colonna"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"risultato", "=", 
+     RowBox[{"Map", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Append", "[", 
+         RowBox[{"#", ",", 
+          RowBox[{"determinaVincitore", "[", "#", "]"}]}], "]"}], "&"}], ",", 
+       "tuples"}], "]"}]}], ";"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Calcola", " ", "le", " ", "statistiche"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"statistiche", "=", 
+     RowBox[{"Counts", "[", 
+      RowBox[{"risultato", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", "11"}], "]"}], "]"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"vittorieAlice", "=", 
+     RowBox[{"statistiche", "[", "\"\<A\>\"", "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"vittorieBob", "=", 
+     RowBox[{"statistiche", "[", "\"\<B\>\"", "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"pareggi", "=", 
+     RowBox[{"statistiche", "[", "\"\<T\>\"", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Visualizza", " ", "il", " ", "risultato"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", "\"\<Tabella dei risultati:\>\"", "]"}], ";"}], 
+   "\n", 
+   RowBox[{"Grid", "[", 
+    RowBox[{
+     RowBox[{"Prepend", "[", 
+      RowBox[{"risultato", ",", 
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<1\>\"", ",", "\"\<2\>\"", ",", "\"\<3\>\"", ",", "\"\<4\>\"", 
+         ",", "\"\<5\>\"", ",", " ", "\"\<6\>\"", ",", " ", "\"\<7\>\"", ",", 
+         "\"\<8\>\"", ",", " ", "\"\<9\>\"", ",", "\"\<10\>\"", ",", 
+         "\"\<Vincitore\>\""}], "}"}]}], "]"}], ",", 
+     RowBox[{"Frame", "->", "All"}], ",", 
+     RowBox[{"Alignment", "->", "Center"}]}], "]"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Visualizza", " ", "le", " ", "statistiche"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", "\"\<\\nStatistiche:\>\"", "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Vittorie di Alice: \>\"", ",", "vittorieAlice"}], "]"}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Vittorie di Bob: \>\"", ",", "vittorieBob"}], "]"}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Pareggi: \>\"", ",", "pareggi"}], "]"}], ";"}]}]}]], "Input",\
+ExpressionUUID->"41347cd5-99d5-4929-8064-da3c31dc98cc"]
+},
+WindowSize->{808, 716},
+WindowMargins->{{20, Automatic}, {Automatic, 44}},
+FrontEndVersion->"13.1 for Mac OS X ARM (64-bit) (June 16, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"bf704c89-4f57-4bcc-b02f-3d8e4771784a"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 7342, 188, 808, "Input",ExpressionUUID->"41347cd5-99d5-4929-8064-da3c31dc98cc"]
+}
+]
+*)
+
+(* End of internal cache information *)
+
